@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticket-booking-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ticket-booking-app
+  template:
+    metadata:
+      labels:
+        app: ticket-booking-app
+    spec:
+      containers:
+      - name: ticket-booking-app
+        image: your-dockerhub-username/ticket-booking-app:latest
+        ports:
+        - containerPort: 5000
