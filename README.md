@@ -1,6 +1,6 @@
 # Ticket Booking Application - DevOps Workflow
 
-This repository contains a simple ticket booking web application built with Flask (Python) and implements a complete automated DevOps workflow using Git, Docker, Jenkins, and Kubernetes.
+This repository contains a simple ticket booking web application built with Streamlit (Python) and implements a complete automated DevOps workflow using Git, Docker, Jenkins, and Kubernetes.
 
 ## Application Overview
 
@@ -53,10 +53,10 @@ The Dockerfile uses Python 3.9 slim image, installs dependencies, and runs the F
 docker build -t ticket-booking-app .
 
 # Run the container
-docker run -p 5000:5000 ticket-booking-app
+docker run -p 8501:8501 ticket-booking-app
 
 # Test the application
-curl http://localhost:5000
+curl http://localhost:8501
 ```
 
 ### 3. Continuous Integration and Continuous Delivery (CI/CD)
@@ -116,7 +116,7 @@ python app.py
 docker build -t ticket-booking-app .
 
 # Run
-docker run -p 5000:5000 ticket-booking-app
+docker run -p 8501:8501 ticket-booking-app
 
 # Push to Docker Hub
 docker tag ticket-booking-app your-username/ticket-booking-app
@@ -189,9 +189,9 @@ The complete code has been pushed to: https://github.com/divitisanthoshi/ticket-
 
 ## Commands Summary
 
-1. **Local Development**: `python app.py` → Runs on http://127.0.0.1:5000
+1. **Local Development**: `streamlit run app.py` → Runs on http://localhost:8501
 2. **Docker Build**: `docker build -t ticket-booking-app .`
-3. **Docker Run**: `docker run -p 5000:5000 ticket-booking-app`
+3. **Docker Run**: `docker run -p 8501:8501 ticket-booking-app`
 4. **Kubernetes Deploy**: `kubectl apply -f k8s/`
 5. **Scale Application**: `kubectl scale deployment ticket-booking-app --replicas=5`
 
