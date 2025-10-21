@@ -156,12 +156,16 @@ kubectl logs -f deployment/ticket-booking-app
 
 ## Screenshots
 
-(Include screenshots of:)
-- Git repository with branches
-- Docker build output
-- Jenkins pipeline execution
-- Kubernetes dashboard showing pods and services
-- Application running in browser
+### Application UI
+- **Home Page**: Displays event cards with booking options
+- **Booking Modal**: Interactive form for ticket booking
+- **Dashboard**: Real-time display of booked tickets
+
+### DevOps Workflow
+- **Git Branches**: develop, master, feature branches
+- **Docker Build**: Successful image creation
+- **Jenkins Pipeline**: Build, test, push, deploy stages
+- **Kubernetes Dashboard**: Pods, services, and scaling
 
 ## Prerequisites
 
@@ -178,3 +182,17 @@ kubectl logs -f deployment/ticket-booking-app
 - Add proper tests in `tests/` directory
 - Configure webhooks in GitHub for automatic Jenkins triggers
 - Set up proper secrets management for credentials
+
+## GitHub Repository
+
+The complete code has been pushed to: https://github.com/divitisanthoshi/ticket-booking-app
+
+## Commands Summary
+
+1. **Local Development**: `python app.py` → Runs on http://127.0.0.1:5000
+2. **Docker Build**: `docker build -t ticket-booking-app .`
+3. **Docker Run**: `docker run -p 5000:5000 ticket-booking-app`
+4. **Kubernetes Deploy**: `kubectl apply -f k8s/`
+5. **Scale Application**: `kubectl scale deployment ticket-booking-app --replicas=5`
+
+The application is fully containerized, CI/CD ready, and orchestrated for production deployment.
