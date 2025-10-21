@@ -20,7 +20,32 @@
     </form>
     <div id="message"></div>
 
+    <h2>Booked Tickets Dashboard</h2>
+    <div id="ticketsList">
+        <p>Loading tickets...</p>
+    </div>
+
     <script>
+        async function loadTickets() {
+            try {
+                const response = await fetch('/tickets');
+                const tickets = await response.json();
+                const ticketsDiv = document.getElementById('ticketsList');
+                if (tickets.length === 0) {
+                    ticketsDiv.innerHTML = '<p>No tickets booked yet.</p>';
+                } else {
+                    let html = '<ul>';
+                    tickets.forEach(ticket => {
+                        html += `<li><strong>${ticket.name}</strong> - ${ticket.event} - ${ticket.seats} seats - ${ticket.email}</li>`;
+                    });
+                    html += '</ul>';
+                    ticketsDiv.innerHTML = html;
+                }
+            } catch (error) {
+                document.getElementById('ticketsList').innerHTML = '<p>Error loading tickets.</p>';
+            }
+        }
+
         document.getElementById('bookingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const data = {
@@ -36,7 +61,14 @@
             });
             const result = await response.json();
             document.getElementById('message').innerText = result.message;
+            // Clear form
+            document.getElementById('bookingForm').reset();
+            // Reload tickets
+            loadTickets();
         });
+
+        // Load tickets on page load
+        window.onload = loadTickets;
     </script>
 </body>
 </html>
