@@ -119,14 +119,14 @@ docker build -t ticket-booking-app .
 docker run -p 8501:8501 ticket-booking-app
 
 # Push to Docker Hub
-docker tag ticket-booking-app your-username/ticket-booking-app
+docker tag ticket-booking-app divitisanthoshi/ticket-booking-app
 docker push your-username/ticket-booking-app
 ```
 
 ### Jenkins Configuration
 - Job Type: Pipeline
 - Definition: Pipeline script from SCM
-- SCM: Git, Repository URL: https://github.com/your-username/ticket-booking-app.git
+- SCM: Git, Repository URL: https://github.com/divitisanthoshi/ticket-booking-app.git
 - Branches to build: develop
 - Build Triggers: GitHub hook trigger for GITScm polling
 
@@ -154,7 +154,6 @@ kubectl logs -f deployment/ticket-booking-app
 4. **Push**: Upload image to Docker Hub
 5. **Deploy**: Update Kubernetes deployment with new image
 
-## Screenshots
 
 ### Application UI
 - **Home Page**: Displays event cards with booking options
@@ -175,17 +174,6 @@ kubectl logs -f deployment/ticket-booking-app
 - Kubernetes cluster (local or cloud)
 - Docker Hub account
 - GitHub repository
-
-## Notes
-
-- Replace `your-dockerhub-username` and `your-username` with actual values
-- Add proper tests in `tests/` directory
-- Configure webhooks in GitHub for automatic Jenkins triggers
-- Set up proper secrets management for credentials
-
-## GitHub Repository
-
-The complete code has been pushed to: https://github.com/divitisanthoshi/ticket-booking-app
 
 ## Commands Summary
 
