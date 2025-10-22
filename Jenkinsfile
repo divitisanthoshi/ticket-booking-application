@@ -2,17 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'your-dockerhub-username/ticket-booking-app'
+        DOCKER_IMAGE = 'divitisanthoshi/ticket-booking-app'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'develop', url: 'https://github.com/your-username/ticket-booking-app.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -25,7 +19,7 @@ pipeline {
             steps {
                 script {
                     docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").inside {
-                        sh 'python -m pytest tests/'  // Assuming you have tests
+                        bat 'python -m pytest tests/'  // Assuming you have tests
                     }
                 }
             }
@@ -45,8 +39,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh 'kubectl apply -f k8s/deployment.yaml'
-                    sh 'kubectl apply -f k8s/service.yaml'
+                    bat 'kubectl apply -f k8s/deployment.yaml'
+                    bat 'kubectl apply -f k8s/service.yaml'
                 }
             }
         }
@@ -54,7 +48,9 @@ pipeline {
 
     post {
         always {
-            sh 'docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true'
+            script {
+                bat 'docker rmi %DOCKER_IMAGE%:%DOCKER_TAG% || echo failed'
+            }
         }
     }
 }
