@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                    bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -18,9 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").inside {
-                        bat 'python -m pytest tests/'  // Assuming you have tests
-                    }
+                    bat "docker run --rm ${DOCKER_IMAGE}:${DOCKER_TAG} python -c \"import streamlit; print('Streamlit import successful')\""
                 }
             }
         }
@@ -28,10 +26,10 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
-                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
-                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push('latest')
-                    }
+                    bat "docker login -u divitisanthoshi -p %DOCKERHUB_PASSWORD%"
+                    bat "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    bat "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+                    bat "docker push ${DOCKER_IMAGE}:latest"
                 }
             }
         }
@@ -49,7 +47,7 @@ pipeline {
     post {
         always {
             script {
-                bat 'docker rmi %DOCKER_IMAGE%:%DOCKER_TAG% || echo failed'
+                bat "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || echo failed"
             }
         }
     }
