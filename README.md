@@ -78,6 +78,7 @@ The pipeline includes:
 #### Docker Hub Integration
 - Create a Docker Hub account
 - Set up credentials in Jenkins
+- Images are pushed to divitisanthoshi/ticket-booking-web-app repository
 - Images are tagged with build number and pushed
 
 ### 4. Deployment and Orchestration
@@ -119,8 +120,8 @@ docker build -t ticket-booking-app .
 docker run -p 8501:8501 ticket-booking-app
 
 # Push to Docker Hub
-docker tag ticket-booking-app divitisanthoshi/ticket-booking-app
-docker push your-username/ticket-booking-app
+docker tag ticket-booking-app divitisanthoshi/ticket-booking-web-app
+docker push divitisanthoshi/ticket-booking-web-app
 ```
 
 ### Jenkins Configuration
@@ -182,5 +183,12 @@ kubectl logs -f deployment/ticket-booking-app
 3. **Docker Run**: `docker run -p 8501:8501 ticket-booking-app`
 4. **Kubernetes Deploy**: `kubectl apply -f k8s/`
 5. **Scale Application**: `kubectl scale deployment ticket-booking-app --replicas=5`
+
+## Deployment Status
+
+- **Docker Hub Repository**: https://hub.docker.com/r/divitisanthoshi/ticket-booking-web-app
+- **Kubernetes Service URL**: http://127.0.0.1:52073 (when running minikube service)
+- **Pods Status**: 3/3 running with 0 restarts
+- **Jenkins Pipeline**: Configured to build, test, push, and deploy automatically
 
 The application is fully containerized, CI/CD ready, and orchestrated for production deployment.
