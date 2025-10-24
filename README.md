@@ -127,7 +127,7 @@ docker push divitisanthoshi/ticket-booking-web-app
 ### Jenkins Configuration
 - Job Type: Pipeline
 - Definition: Pipeline script from SCM
-- SCM: Git, Repository URL: https://github.com/divitisanthoshi/ticket-booking-app.git
+- SCM: Git, Repository URL: https://github.com/divitisanthoshi/ticket-booking-application
 - Branches to build: develop
 - Build Triggers: GitHub hook trigger for GITScm polling
 
