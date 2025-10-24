@@ -194,16 +194,22 @@ kubectl logs -f deployment/ticket-booking-app
 
 ### Screenshots
 
+#### Docker Build Success
+![Docker Build](screenshots/Docker.png)
+
 #### Docker Hub Repository
-![Docker Hub Repository](screenshots/dockerhub-repo.png)
+![Docker Hub Repository](screenshots/DockerHub.png)
 
-#### Jenkins Pipeline Build
-![Jenkins Build Success](screenshots/jenkins-build.png)
+#### Jenkins Pipeline
+![Jenkins Pipeline](screenshots/jenkins%20pipeline.png)
 
-#### Kubernetes Pods Running
-![Kubernetes Pods](screenshots/k8s-pods.png)
+#### Jenkins Dashboard
+![Jenkins Dashboard](screenshots/jenkins.png)
 
-#### Application Running in Browser
-![Streamlit App](screenshots/streamlit-app.png)
+#### Kubernetes Deployment
+![Kubernetes Deployment](screenshots/kubernetes.png)
+
+#### Web Application Running
+![Web Application](screenshots/Web%20App%20view.png)
 
 The application is fully containerized, CI/CD ready, and orchestrated for production deployment.
