@@ -187,8 +187,23 @@ kubectl logs -f deployment/ticket-booking-app
 ## Deployment Status
 
 - **Docker Hub Repository**: https://hub.docker.com/r/divitisanthoshi/ticket-booking-web-app
-- **Kubernetes Service URL**: http://127.0.0.1:52073 (when running minikube service)
-- **Pods Status**: 3/3 running with 0 restarts
+- **Kubernetes Service URL**: http://127.0.0.1:59381 (current active service URL)
+- **Pods Status**: 3/3 running with 0 restarts (ticket-booking-app-75c6b7fddb-4bxxk, ticket-booking-app-75c6b7fddb-jjrcv, ticket-booking-app-75c6b7fddb-pddll)
 - **Jenkins Pipeline**: Configured to build, test, push, and deploy automatically
+- **Git Commits**: Recent commits show active development and Docker Hub integration updates
+
+### Screenshots
+
+#### Docker Hub Repository
+![Docker Hub Repository](screenshots/dockerhub-repo.png)
+
+#### Jenkins Pipeline Build
+![Jenkins Build Success](screenshots/jenkins-build.png)
+
+#### Kubernetes Pods Running
+![Kubernetes Pods](screenshots/k8s-pods.png)
+
+#### Application Running in Browser
+![Streamlit App](screenshots/streamlit-app.png)
 
 The application is fully containerized, CI/CD ready, and orchestrated for production deployment.
