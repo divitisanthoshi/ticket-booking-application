@@ -35,15 +35,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    bat 'kubectl apply -f k8s/deployment.yaml --validate=false'
-                    bat 'kubectl apply -f k8s/service.yaml --validate=false'
-                }
-            }
-        }
     }
 
     post {
